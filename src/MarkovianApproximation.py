@@ -28,13 +28,13 @@ class MarkovianApproximation():
         self.D = self.generate_D_matrix(r)
 
     def generate_Q_matrix(self, R):
-        """_Q matrix generator_
+        """Q matrix generator
 
         Args:
-            R : matrix or 2d array
+            R (matrix/2d array) : matrix or 2d array
 
         Returns:
-            R : matrix or 2d array
+            R (matrix/2d array) : R with transformed to Q matrix rules
         """
         length = len(R)
         
@@ -44,29 +44,29 @@ class MarkovianApproximation():
         return R
     
     def generate_D_matrix(self, r):
-        """_summary_
+        """D matrix generator from reward vector
 
         Args:
-            r (_type_): _description_
+            r (vector/array): reward vector of each state
 
         Returns:
-            _type_: _description_
+            r (matrix/2d array): diagonal matrix from reward vector
         """
         return np.diag(r)
     
     
-    def create_Qinf_transition_matrix(self, reward, dy, num_state, Q, D):
-        """_summary_
+    def generate_Qinf_transition_matrix(self, reward, dy, num_state, Q, D):
+        """Qinf matrix generator
 
         Args:
-            reward (_type_): _description_
-            dy (_type_): _description_
-            num_state (_type_): _description_
-            Q (_type_): _description_
-            D (_type_): _description_
+            reward (float/int): y_max
+            dy (float/int): delta/step
+            num_state (float/int): number of state
+            Q (matrix/2d array): Q matrix 
+            D (matrix/2d array): D matrix 
 
         Returns:
-            _type_: _description_
+            Qinf (matrix/2d array): Qinf matrix transition for markovian approximation
         """
         new_transition = int(reward / dy)
         size_c = new_transition * num_state
@@ -104,17 +104,39 @@ class MarkovianApproximation():
         return C
     
     def _sparse(self, M):
-        
+        """Convert matrix to sparse matrix (vector/array)
+
+        Args:
+            M (matrix/2d array): any matrix
+
+        Returns:
+            M (array): array
+        """
         return csr_matrix(M)
 
     def _poisson(self, lambd, t, n):
-        # https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html
+        """ Compute poission distribution
+            https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html
+
+        Args:
+            lambd (float/integer): lambda
+            t (float/integer): t_max
+            n (integer): n, counter
+
+        Returns:
+            p : poisson probability
+        """
         
         return poisson.pmf(k=n, mu=lambd*t)
 
     def _compute_joint_distribution(self):
+        """ Compute joint distribution with markovian approximation approach
+
+        Returns:
+            cdf, pdf : return two array cdf and pdf
+        """
         
-        Cinf = self.create_Qinf_transition_matrix(reward=self.y_max, 
+        Cinf = self.generate_Qinf_transition_matrix(reward=self.y_max, 
                                                   dy=self.delta,
                                                   num_state=self.num_state, 
                                                   Q=self.Q,

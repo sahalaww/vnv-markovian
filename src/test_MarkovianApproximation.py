@@ -39,9 +39,9 @@ def test_generate_D():
     
     np.testing.assert_array_equal(D, excepted_D)
 
-def test_create_Qinf_transition_matrix():
+def test_generate_Qinf_transition_matrix():
     D = markovian.generate_D_matrix(markovian.r)
-    Qinf = markovian.create_Qinf_transition_matrix(reward=markovian.y_max, 
+    Qinf = markovian.generate_Qinf_transition_matrix(reward=markovian.y_max, 
                                                   dy=markovian.delta,
                                                   num_state=markovian.num_state, 
                                                   Q=markovian.Q,
