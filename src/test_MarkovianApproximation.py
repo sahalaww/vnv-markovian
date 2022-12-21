@@ -142,4 +142,4 @@ def test_compute_joint_distribution():
     size_c = new_transition * markovian.num_state
     
     assert cdf.size == 1
-    assert pdf.shape[0] == 28
+    assert pdf.shape[0] == size_c
