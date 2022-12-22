@@ -148,19 +148,23 @@ class MarkovianApproximation():
         U_sparse = self._sparse(U)
         n = 0
         t = self.t_max
-        c_error = 1 - self._poisson(lambd, t, n)
+        PP_0 = self._poisson(lambd, t, n)
+        c_error = 1 - PP_0
         pi_0_new = np.zeros(Cinf.shape[0])
-        pi_temp = pi_0_new
+        pi_U_t = 0
+
         # update initial prob new state
         for i in range(len(self.pi_0)):
             pi_0_new[i] = self.pi_0[i]
+        pi_temp = pi_0_new
         
         while c_error >= self.epsilon:
             n += 1
             PP_n_t = self._poisson(lambd, t, n)
             c_error = c_error - PP_n_t
             pi_temp = pi_temp * U_sparse
-            pi_0_new = pi_0_new + pi_temp*PP_n_t
+            pi_U_t = pi_U_t + pi_temp*PP_n_t
         
-        cdf = sum(pi_0_new)
-        return cdf, pi_0_new
+        cdf = sum(pi_U_t)
+        
+        return cdf, pi_U_t
