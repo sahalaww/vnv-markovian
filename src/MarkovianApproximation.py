@@ -156,6 +156,7 @@ class MarkovianApproximation():
         # update initial prob new state
         for i in range(len(self.pi_0)):
             pi_0_new[i] = self.pi_0[i]
+        
         pi_temp = pi_0_new
         
         while c_error >= self.epsilon:
