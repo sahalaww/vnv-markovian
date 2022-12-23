@@ -129,7 +129,7 @@ class MarkovianApproximation():
         
         return poisson.pmf(k=n, mu=lambd*t)
 
-    def _compute_joint_distribution(self):
+    def compute_joint_distribution(self):
         """ Compute joint distribution with markovian approximation approach
 
         Returns:

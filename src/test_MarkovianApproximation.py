@@ -136,7 +136,7 @@ def test_generate_Qinf_transition_matrix():
 
 def test_compute_joint_distribution():
     
-    cdf, pdf = markovian._compute_joint_distribution()
+    cdf, pdf = markovian.compute_joint_distribution()
     new_transition = int(markovian.y_max / markovian.delta)
 
     size_c = new_transition * markovian.num_state
