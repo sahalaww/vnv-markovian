@@ -16,6 +16,7 @@ def main():
     args_parser.add_argument('-tm', '--t-max', default=0.5, help='T-max value')
     args_parser.add_argument('-ym', '--y-max', default=3.5, help='Y-max value')
     args_parser.add_argument('-e', '--epsilon', default=10e-3, help='Epsilon')
+    args_parser.add_argument('-o', '--output-file', default='out.txt', help='Output file')
     
     args = args_parser.parse_args()
 
@@ -31,6 +32,7 @@ def main():
     t_max = float(args.t_max)
     y_max = float(args.y_max)
     delta = float(args.delta)
+    output_file = args.output_file
     
     t0 = time.time()
     
@@ -45,6 +47,7 @@ def main():
                                     epsilon=epsilon)
     
     cdf, pdf = markovian.compute_joint_distribution()
+    R_trans.save(pdf, output_file)
     
     print("Joint distribution :", cdf)
     print("Probability each transition :", pdf)

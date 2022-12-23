@@ -30,3 +30,6 @@ jobs:
     - name: Launch run.sh
       run: |
         bash run.sh
+    - name: Check output file
+      run: |
+        head -n 10 sample-out.txt

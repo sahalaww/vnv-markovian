@@ -46,4 +46,4 @@ class FileUtil:
         return pi_0
 
     def save(self, content, path):
-        pass
+        np.savetxt(path, content, delimiter=',')
