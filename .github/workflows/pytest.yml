@@ -27,3 +27,6 @@ jobs:
     - name: Run Test
       run: |
         pytest
+    - name: Launch run.sh
+      run: |
+        bash run.sh
