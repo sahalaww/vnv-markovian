@@ -124,7 +124,7 @@ python main.py -t samples/game.tra -r samples/game.rew -p samples2/game.pi -d 0.
 
 Hasil yang diperoleh dari simulasi diatas dengan $\varepsilon = 0.01$
 
-| $\Delta y$      | $Pr \big\{{ Y_{0.2} \leq 5 }\} $ | Time (s)    |
+| $\Delta y$      | $Pr \{{ Y_{0.2} \leq 5 }\} $ | Time (s)    |
 | --------------- | -------------------------------- |------------ |
 | $10^{-1}$       | 0.12157013167794681              | 0.4         |
 
@@ -132,7 +132,7 @@ Hasil yang diperoleh dari simulasi diatas dengan $\varepsilon = 0.01$
 Benchmark dengan hasil pada paper, nilai $\varepsilon = 10^-16$
 
 
-| $\Delta y$      | $Pr \big\{{ Y_{0.2} \leq 5 }\} $ | Time (s)    |
+| $\Delta y$      | $Pr\{{ Y_{0.2} \leq 5 }\} $ | Time (s)    |
 | --------------- | -------------------------------- |------------ |
 | $10^{-1}$       | 0.1294067747                     | 0.003       |
 | $10^{-2}$       | 0.1324884190                     | 0.232       |
