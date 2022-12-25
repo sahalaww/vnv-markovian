@@ -122,11 +122,13 @@ python main.py -t samples/game.tra -r samples/game.rew -p samples2/game.pi -d 0.
 
 ## Hasil
 
-Hasil yang diperoleh dari simulasi diatas dengan $\varepsilon = 0.01$
+Hasil yang diperoleh dari simulasi diatas dengan $\varepsilon = 0.001$
 
 | $\Delta y$      | $Pr \bigl({ Y_{0.2} \leq 5 })$   | Time (s)    |
 | --------------- | -------------------------------- |------------ |
-| $10^{-1}$       | 0.1215701316                     | 0.4         |
+| $10^{-1}$       | 0.1216920492                     | 0.047       |
+| $10^{-2}$       | 0.1225317816                     | 0.398       |
+| $10^{-3}$       | 0.1227338469                     | 15.109      |
 
 
 Benchmark dengan hasil pada paper, nilai $\varepsilon = 10^{-16}$
@@ -137,6 +139,13 @@ Benchmark dengan hasil pada paper, nilai $\varepsilon = 10^{-16}$
 | $10^{-1}$       | 0.1294067747                     | 0.003       |
 | $10^{-2}$       | 0.1324884190                     | 0.232       |
 | $10^{-3}$       | 0.1329690459                     | 20.56       |
+
+
+Error
+
+```
+numpy.core._exceptions.MemoryError: Unable to allocate 298. GiB for an array with shape (200000, 200000) and data type float64
+```
 
 
 ## Referensi
