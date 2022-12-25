@@ -1,2 +1,2 @@
 #!/bin/bash
-python main.py -t samples2/game.tra -r samples2/game.rew -p samples2/game.pi -d 0.1 -tm 4 -ym 8 -o sample-out.txt
+python main.py -t samples/game.tra -r samples/game.rew -p samples/game.pi -d 0.1 -tm 0.2 -ym 5 -e 0.001 -o sample-out.txt
