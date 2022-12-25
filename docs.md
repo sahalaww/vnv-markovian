@@ -150,4 +150,7 @@ numpy.core._exceptions.MemoryError: Unable to allocate 298. GiB for an array wit
 
 ## Referensi
 
-[1] L. Cloth, B.R. Haverkort, Five Performability Algorithms: A Comparison, in: MAM 2006: Markov Anniversary Meeting, Boson Books, 2006: pp. 39–54. https://research.utwente.nl/en/publications/five-performability-algorithms-a-comparison (accessed September 10, 2022).
+[1] L. Cloth and B. R. Haverkort, “Five Performability Algorithms: A Comparison,” in MAM 2006: Markov Anniversary Meeting, Jun. 2006, pp. 39–54. Accessed: Sept. 10, 2022. [Online]. Available: https://research.utwente.nl/en/publications/five-performability-algorithms-a-comparison 
+
+[2] L. Cloth, “Model Checking Algorithms for Markov Reward Models,” phdthesis, University of Twente, Netherlands, 2006.
+
