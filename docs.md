@@ -2,12 +2,15 @@
 
 ## Formula Dasar
 
-$$ \Upsilon{ss'}(t,y) = Pr \big\{{X_t} = s', Y_t \in [0,\Delta y] | X_0 = s \big\} + \\\sum_{j=1}^{\frac{y}{\Delta y - 1}} Pr \big\{{X_t} = s', Y_t \in (j \Delta y, (j+1)\Delta y)] | X_0 = s \}  
-$$
+![eq-1](https://quicklatex.com/cache3/80/ql_b0fce36a5db273466faf0cf7c3837680_l3.png)
 
-Lalu kami ingin melakukan perhitungan dengan pendekatan dengan formula $Pr \bigl\{{X_t} = s', Y_t \in (j \Delta y, (j+1)\Delta y)] | X_0 = s \bigl\}$ , yang mana nilai tersebut merupakan transient probability $Π(t)_{(s,0)(s',j)}^{C{\infty}}$ ketika di suatu state $ (s',j) $ di waktu $ t $ yang telah dimulai pada saat state $(s, 0)$ 
+Lalu kami ingin melakukan perhitungan dengan pendekatan dengan formula 
 
-Nilai matriks $\bold {Q}^{\infty}$ dibentuk dari matriks $\bold {Q}$ dan $ \bold {D}$.  Nilai matriks $\bold {Q}$ dihitung dari $\bold {R}$ (rate matrix/transisi matriks ke tiap state) dan matriks $\bold {D}$ dengan nilai diagonal utamanya dari vektor reward $\rho$.
+![](https://quicklatex.com/cache3/fb/ql_2acee0a804f1596f1de8813bb0ef6bfb_l3.png)
+
+yang mana nilai tersebut merupakan transient probability $Π(t)_{(s,0)(s',j)}^{C{\infty}}$ ketika di suatu state $(s',j)$ di waktu $t$ yang telah dimulai pada saat state $(s, 0)$ 
+
+Nilai matriks $\bold{Q}^{\infty}$ dibentuk dari matriks $\bold {Q}$ dan $\bold {D}$.  Nilai matriks $\bold{Q}$ dihitung dari $\bold {R}$ (rate matrix/transisi matriks ke tiap state) dan matriks $\bold {D}$ dengan nilai diagonal utamanya dari vektor reward $\rho$.
 
 Berikut formula untuk menghitung nilai matriks generator $\bold {Q}$:
 
@@ -39,7 +42,7 @@ $$ \begin{split}
         & = \sum_{z\neq s}^{\infty}  e^{-\lambda t} \frac{(\lambda t)^n}{n!} . \bold {U}^n \quad , \textrm { nilai } \bold {U}^0 = \bold {I}, \bold {U}^n = \bold {U}^{n-1}. \bold {U}
 \end{split}$$
 
-Pada formula diatas, nilai $e^{-\lambda t} \frac{(\lambda t)^n}{n!} $ adalah $ PP $ atau poisson probability. 
+Pada formula diatas, nilai $e^{-\lambda t} \frac{(\lambda t)^n}{n!} $ adalah $PP $ atau poisson probability. 
 
 Maka menjadi,
 
@@ -119,14 +122,14 @@ python main.py -t samples/game.tra -r samples/game.rew -p samples2/game.pi -d 0.
 
 ## Hasil
 
-Hasil yang diperoleh dari simulasi diatas dengan $ \varepsilon = 0.01 $
+Hasil yang diperoleh dari simulasi diatas dengan $\varepsilon = 0.01$
 
 | $\Delta y$      | $Pr \big\{{ Y_{0.2} \leq 5 }\} $ | Time (s)    |
 | --------------- | -------------------------------- |------------ |
 | $10^{-1}$       | 0.12157013167794681              | 0.4         |
 
 
-Benchmark dengan hasil pada paper, nilai $ \varepsilon = 10^-16 $
+Benchmark dengan hasil pada paper, nilai $\varepsilon = 10^-16$
 
 
 | $\Delta y$      | $Pr \big\{{ Y_{0.2} \leq 5 }\} $ | Time (s)    |
