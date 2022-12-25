@@ -4,7 +4,7 @@
 
 ![eq-1](https://quicklatex.com/cache3/80/ql_b0fce36a5db273466faf0cf7c3837680_l3.png)
 
-Lalu kami ingin melakukan perhitungan dengan pendekatan dengan formula 
+Lalu kami ingin melakukan perhitungan melalui pendekatan dengan formula 
 
 ![](https://quicklatex.com/cache3/fb/ql_2acee0a804f1596f1de8813bb0ef6bfb_l3.png)
 
