@@ -2,17 +2,17 @@
 
 ## Formula Dasar
 
-![eq-1](https://quicklatex.com/cache3/80/ql_b0fce36a5db273466faf0cf7c3837680_l3.png)
+![eq-1](images/eq1.png)
 
-Lalu kami ingin melakukan perhitungan melalui pendekatan dengan formula 
+Lalu kami ingin melakukan perhitungan melalui _aproximation_ dengan formula 
 
-![](https://quicklatex.com/cache3/fb/ql_2acee0a804f1596f1de8813bb0ef6bfb_l3.png)
+![eq-2](images/eq2.png)
 
 yang mana nilai tersebut merupakan transient probability $Π(t)_{(s,0)(s',j)}^{C{\infty}}$ ketika di suatu state $(s',j)$ di waktu $t$ yang telah dimulai pada saat state $(s, 0)$ 
 
-Nilai matriks $\bold{Q}^{\infty}$ dibentuk dari matriks $\bold {Q}$ dan $\bold {D}$.  Nilai matriks $\bold{Q}$ dihitung dari $\bold {R}$ (rate matrix/transisi matriks ke tiap state) dan matriks $\bold {D}$ dengan nilai diagonal utamanya dari vektor reward $\rho$.
+Nilai matriks $\mathbf{Q}^{\infty}$ dibentuk dari matriks $\mathbf {Q}$ dan $\mathbf {D}$.  Nilai matriks $\mathbf{Q}$ dihitung dari $\mathbf {R}$ (rate matrix/transisi matriks ke tiap state) dan matriks $\mathbf {D}$ dengan nilai diagonal utamanya dari vektor reward $\rho$.
 
-Berikut formula untuk menghitung nilai matriks generator $\bold {Q}$:
+Berikut formula untuk menghitung nilai matriks generator $\mathbf {Q}$:
 
 $$ Q_{ss'} = \left\{ 
   \begin{array}{ c l }
@@ -21,33 +21,33 @@ $$ Q_{ss'} = \left\{
   \end{array}
 \right. $$
 
-Selanjutnya, untuk matriks $\bold {D}$ dapat dibentuk dari vektor reward ($\rho$), 
+Selanjutnya, untuk matriks $\mathbf {D}$ dapat dibentuk dari vektor reward ($\rho$), 
 
 $$ D = diag(\rho) $$
 
 Perhitungan $Π(t)$ secara efektif dapat dilakukan dengan uniformisation karena pada formula
 
 
-$$ Π(t) = Π(0) . e^{Qt} = \sum_{n=0}^{\infty} \frac{(Qt)^n}{n!}  \quad  \textrm{, dimana nilai } { Π(0) = {\bold {I}}} $$
+$$ Π(t) = Π(0) . e^{Qt} = \sum_{n=0}^{\infty} \frac{(Qt)^n}{n!}  \quad  \textrm{, dimana nilai } { Π(0) = {\mathbf {I}}} $$
 
-Komputasi matrix exponential untuk $\bold Q$ tidak feasible. Maka, dapat didefinisikan matrix $\bold U$ (stochastic matrix)
+komputasi matriks exponential untuk $\mathbf Q$ tidak _feasible_. Maka, dapat didefinisikan matrix $\mathbf U$ (stochastic matrix):
 
-$$ \bold {U} = \bold {I} + \frac{1}{\lambda} \bold {Q} \quad \rightarrow \quad \bold {Q} = \lambda(\bold {U} - \bold {I}) \quad , \lambda = max(diag(\bold {Q}))$$
+$$ \mathbf {U} = \mathbf {I} + \frac{1}{\lambda} \mathbf {Q} \quad \rightarrow \quad \mathbf {Q} = \lambda(\mathbf {U} - \mathbf {I}) \quad , \lambda = max(diag(\mathbf {Q}))$$
 
 Sehingga,
 
 $$ \begin{split}
-    Π(t) & = e^{\lambda( \bold {U} - \bold {I})t} \\
-         & = e^{-\lambda t} . e^{\lambda t \bold {U}} \\
-        & = \sum_{z\neq s}^{\infty}  e^{-\lambda t} \frac{(\lambda t)^n}{n!} . \bold {U}^n \quad , \textrm { nilai } \bold {U}^0 = \bold {I}, \bold {U}^n = \bold {U}^{n-1}. \bold {U}
+    Π(t) & = e^{\lambda( \mathbf {U} - \mathbf {I})t} \\
+         & = e^{-\lambda t} . e^{\lambda t \mathbf {U}} \\
+        & = \sum_{z\neq s}^{\infty}  e^{-\lambda t} \frac{(\lambda t)^n}{n!} . \mathbf {U}^n \quad , \textrm { nilai } \mathbf {U}^0 = \mathbf {I}, \mathbf {U}^n = \mathbf {U}^{n-1}. \mathbf {U}
 \end{split}$$
 
-Pada formula diatas, nilai $e^{-\lambda t} \frac{(\lambda t)^n}{n!} $ adalah $PP $ atau poisson probability. 
+Pada formula diatas, nilai $e^{-\lambda t} \frac{(\lambda t)^n}{n!}$ adalah $PP$ atau poisson probability. 
 
 Maka menjadi,
 
 $$
-    Π(t) = \sum_{n=0}^{N} PP(-\lambda t, n). \bold {U}^n
+    Π(t) = \sum_{n=0}^{N} PP(-\lambda t, n). \mathbf {U}^n
 $$
 
 Agar perhitungan tidak sampai nilai $N$, maka dapat menggunakan error bound yang dihitung secara apriori melalui:
@@ -59,7 +59,7 @@ $$
 
 ## Implementasi Algoritme dan Contoh Perhitungan
 
-Contoh kasus pada gambar diambil dari [1]. 
+Simulasi diambil dari [1]. 
 ![Four state mrm](/images/four-state-mrm.png)
 
 Terdapat 4 state dan 6 transisi, dengan nilai reward $\rho = (50, 20, 100, 0)$. Initial distribution yang ditetapkan adalah $\alpha = (1, 0, 0, 0)$ , lalu nilai $t=0.2$ dan $y=5$
@@ -67,7 +67,7 @@ Terdapat 4 state dan 6 transisi, dengan nilai reward $\rho = (50, 20, 100, 0)$. 
 
 Untuk melakukan perhitungan joint distribution dengan menggunakan markovian approximation dapat dilakukan dengan step berikut:
 
-1. Mendefinisikan rate matriks $\bold {R}$ pada `.tra` file
+1. Mendefinisikan rate matriks $\mathbf {R}$ pada `.tra` file
 
 ```
 STATES 4
@@ -124,21 +124,21 @@ python main.py -t samples/game.tra -r samples/game.rew -p samples2/game.pi -d 0.
 
 Hasil yang diperoleh dari simulasi diatas dengan $\varepsilon = 0.01$
 
-| $\Delta y$      | $Pr \{{ Y_{0.2} \leq 5 }\} $ | Time (s)    |
+| $\Delta y$      | $Pr \bigl({ Y_{0.2} \leq 5 })$   | Time (s)    |
 | --------------- | -------------------------------- |------------ |
-| $10^{-1}$       | 0.12157013167794681              | 0.4         |
+| $10^{-1}$       | 0.1215701316                     | 0.4         |
 
 
-Benchmark dengan hasil pada paper, nilai $\varepsilon = 10^-16$
+Benchmark dengan hasil pada paper, nilai $\varepsilon = 10^{-16}$
 
 
-| $\Delta y$      | $Pr\{{ Y_{0.2} \leq 5 }\} $ | Time (s)    |
+| $\Delta y$      | $Pr \bigl({ Y_{0.2} \leq 5 })$   | Time (s)    |
 | --------------- | -------------------------------- |------------ |
 | $10^{-1}$       | 0.1294067747                     | 0.003       |
 | $10^{-2}$       | 0.1324884190                     | 0.232       |
 | $10^{-3}$       | 0.1329690459                     | 20.56       |
 
 
-## References
+## Referensi
 
 [1] L. Cloth, B.R. Haverkort, Five Performability Algorithms: A Comparison, in: MAM 2006: Markov Anniversary Meeting, Boson Books, 2006: pp. 39–54. https://research.utwente.nl/en/publications/five-performability-algorithms-a-comparison (accessed September 10, 2022).
