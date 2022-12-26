@@ -2,15 +2,16 @@
 
 ## Formula Dasar
 
+Perhitungan joint distribution dapat dikalkulasi menggunakan formula : 
 ![eq-1](images/eq1.png)
 
-Lalu kami ingin melakukan perhitungan melalui _aproximation_ dengan formula 
+Kemudian, _aproximation_ dapat dilakukan pada bagian rumus : 
 
 ![eq-2](images/eq2.png)
 
-yang mana nilai tersebut merupakan transient probability $Π(t)_{(s,0)(s',j)}^{C{\infty}}$ ketika di suatu state $(s',j)$ di waktu $t$ yang telah dimulai pada saat state $(s, 0)$ 
+Formula yang di _aproximation_ merupakan transient probability $Π(t)_{(s,0)(s',j)}^{Q{\infty}}$ ketika di suatu state $(s',j)$ di waktu $t$ yang telah dimulai pada saat state $(s, 0)$.
 
-Nilai matriks $\mathbf{Q}^{\infty}$ dibentuk dari matriks $\mathbf {Q}$ dan $\mathbf {D}$.  Nilai matriks $\mathbf{Q}$ dihitung dari $\mathbf {R}$ (rate matrix/transisi matriks ke tiap state) dan matriks $\mathbf {D}$ dengan nilai diagonal utamanya dari vektor reward $\rho$.
+Nilai matriks $\mathbf{Q}^{\infty}$ dibentuk dari matriks $\mathbf {Q}$ dan $\mathbf {D}$.  Nilai matriks $\mathbf{Q}$ dihitung dari $\mathbf {R}$ (matriks rate/matriks transisi dari suatu state ke state) dan matriks $\mathbf {D}$ adalah matriks dengan nilai diagonal utamanya dari vektor reward $ \rho$.
 
 Berikut formula untuk menghitung nilai matriks generator $\mathbf {Q}$:
 
@@ -21,7 +22,7 @@ $$ Q_{ss'} = \left\{
   \end{array}
 \right. $$
 
-Selanjutnya, untuk matriks $\mathbf {D}$ dapat dibentuk dari vektor reward ($\rho$), 
+Selanjutnya, untuk matriks $\mathbf {D}$ dapat dibentuk dari vektor reward $\rho$ , 
 
 $$ D = diag(\rho) $$
 
@@ -124,24 +125,15 @@ python main.py -t samples/game.tra -r samples/game.rew -p samples2/game.pi -d 0.
 
 Hasil yang diperoleh dari simulasi diatas dengan $\varepsilon = 0.001$
 
-| $\Delta y$      | $Pr \bigl({ Y_{0.2} \leq 5 })$   | Time (s)    |
+| $\Delta y$      | $\Upsilon_{(s,s')} \bigl({ Y_{0.2} \leq 5 })$   | Time (s)    |
 | --------------- | -------------------------------- |------------ |
 | $10^{-1}$       | 0.1216920492                     | 0.047       |
 | $10^{-2}$       | 0.1225317816                     | 0.398       |
 | $10^{-3}$       | 0.1227338469                     | 15.109      |
 
 
-Benchmark dengan hasil pada paper, nilai $\varepsilon = 10^{-16}$
 
-
-| $\Delta y$      | $Pr \bigl({ Y_{0.2} \leq 5 })$   | Time (s)    |
-| --------------- | -------------------------------- |------------ |
-| $10^{-1}$       | 0.1294067747                     | 0.003       |
-| $10^{-2}$       | 0.1324884190                     | 0.232       |
-| $10^{-3}$       | 0.1329690459                     | 20.56       |
-
-
-Error
+Error ketika tidak bsa mengalokasikan memori untuk menyimpan data
 
 ```
 numpy.core._exceptions.MemoryError: Unable to allocate 298. GiB for an array with shape (200000, 200000) and data type float64
