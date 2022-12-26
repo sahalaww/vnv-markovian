@@ -125,7 +125,7 @@ python main.py -t samples/game.tra -r samples/game.rew -p samples2/game.pi -d 0.
 
 Hasil yang diperoleh dari simulasi diatas dengan $\varepsilon = 0.001$
 
-| $\Delta y$      | $\Upsilon_{(s,s')} \bigl({ Y_{0.2} \leq 5 })$   | Time (s)    |
+| $\Delta y$      | $\Upsilon_{(s,s')}(0.2,5)$       | Time (s)    |
 | --------------- | -------------------------------- |------------ |
 | $10^{-1}$       | 0.1216920492                     | 0.047       |
 | $10^{-2}$       | 0.1225317816                     | 0.398       |
